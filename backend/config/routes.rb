@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  devise_for :users, path: 'auth', path_names: {
+    sign_in: 'sign_in',
+    sign_up: 'sign_up'
+  }, controllers: {
+    sessions: 'sessions',
+    registrations: 'registrations'
+  }
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
