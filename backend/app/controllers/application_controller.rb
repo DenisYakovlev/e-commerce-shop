@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::API
+  include Authorization, Permissions
+  
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected

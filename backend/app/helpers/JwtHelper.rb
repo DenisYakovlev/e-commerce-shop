@@ -8,7 +8,11 @@ module JwtHelper
   end
 
   def decode_token(token)
-    JWT.decode(token, @@secret_key, true, algorithm: 'HS256')[0]
+    begin
+      JWT.decode(token, @@secret_key, true, algorithm: 'HS256')[0]
+    rescue => e
+      raise 'Invalid token'
+    end
   end
 
 end

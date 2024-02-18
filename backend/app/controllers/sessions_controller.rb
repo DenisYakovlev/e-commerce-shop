@@ -1,6 +1,6 @@
 class SessionsController < Devise::SessionsController
   include JwtHelper
-
+  
   respond_to :json
 
   def create
