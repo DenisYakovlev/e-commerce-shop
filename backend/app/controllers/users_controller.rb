@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   before_action :authorize_user
   before_action :require_admin_permissions, only: %i[ index show update destroy]
-  before_action :require_user_permissions, only: %i[ me me_update ]
 
   before_action :set_user, only: %i[ show update destroy ]
 
@@ -31,20 +30,6 @@ class UsersController < ApplicationController
   # DELETE /users/user@mail.com
   def destroy
     @user.destroy!
-  end
-
-  # GET /users/me
-  def me
-    render json: @curent_user
-  end
-
-  # PATCH /users/me
-  def me_update
-    if @curent_user.update(user_params)
-      render json: @curent_user
-    else
-      render json: @curent_user.errors, status: :unprocessable_entity
-    end
   end
 
   private

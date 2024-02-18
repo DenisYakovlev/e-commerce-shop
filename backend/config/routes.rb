@@ -7,11 +7,19 @@ Rails.application.routes.draw do
     registrations: 'registrations'
   }
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-  get 'users/me', to: 'users#me'
-  patch 'users/me', to: 'users#me_update'
   resources :users, param: :email, constraints: { email: /[^\/]+/ }, only: %i[index show update destroy]
 
   resources :items
+
+  resources :order_descriptions, only: %i[index show destroy]
+  resources :orders, only: %i[index show create destroy]
+
+  scope :profile do 
+    get '/', to: "profile#index"
+    patch '/', to: "profile#update"
+    get '/orders', to: "profile#orders"
+    get '/orders/:order_id', to: "profile#show_order"
+  end
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
