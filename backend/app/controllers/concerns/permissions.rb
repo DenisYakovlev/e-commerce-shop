@@ -3,7 +3,7 @@ module Permissions
   
   @@error_msg = "You don't have permissions for this aciton"
 
-  def is_user
+  def require_user_permissions
     if @curent_user
       render_error(@@error_msg) unless @curent_user.role == 'user' || @curent_user.role == 'admin'
     else
@@ -11,7 +11,7 @@ module Permissions
     end
   end
 
-  def is_admin
+  def require_admin_permissions
     if @curent_user
       render_error(@@error_msg) unless @curent_user.role == 'admin'
     else

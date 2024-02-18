@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :items
   devise_for :users, path: 'auth', path_names: {
     sign_in: 'sign_in',
     sign_up: 'sign_up'
@@ -8,6 +7,11 @@ Rails.application.routes.draw do
     registrations: 'registrations'
   }
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  get 'users/me', to: 'users#me'
+  patch 'users/me', to: 'users#me_update'
+  resources :users, param: :email, constraints: { email: /[^\/]+/ }, only: %i[index show update destroy]
+
+  resources :items
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.

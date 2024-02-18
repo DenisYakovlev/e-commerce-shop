@@ -1,13 +1,20 @@
 class ItemsController < ApplicationController
+  before_action :authorize_user, only: %i[ create update destroy ]
+  before_action :require_admin_permissions, only: %i[ create update destroy ]
+
   before_action :set_item, only: %i[ show update destroy ]
-  before_action :authorize_user, only: [:show]
-  before_action :is_user, only: [:show]
 
   # GET /items
   def index
-    @items = Item.all
+    @q = Item.ransack(params[:q])
+    @items = @q.result.paginate(page: params[:page], per_page: 10)
 
-    render json: @items
+    items_count = @items.total_entries
+    headers['X-Total-Count'] = items_count.to_s
+    render json: {
+      items: @items, 
+      links: items_paginate(params[:page].to_i || 1, 10, items_count )
+    }
   end
 
   # GET /items/1
@@ -43,11 +50,24 @@ class ItemsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_item
-      @item = Item.find(params[:id])
+      begin
+        @item = Item.find(params[:id])
+      rescue ActiveRecord::RecordNotFound
+        render json: { error: 'Item not found' }, status: :not_found
+      end
     end
 
     # Only allow a list of trusted parameters through.
     def item_params
       params.require(:item).permit(:name, :description, :price)
+    end
+
+    def items_paginate(page, per_page, total)
+      {
+        curr_page: page, 
+        next_page: page * per_page < total ? page + 1 : nil,
+        prev_page: page > 1 ? page - 1 : nil,
+        per_page: per_page
+      }
     end
 end
