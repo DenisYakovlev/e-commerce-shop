@@ -1,0 +1,16 @@
+.nav-icon{
+    padding: 0.75rem;
+    cursor: pointer;
+
+    &:hover{
+        background-color: $gray-400;
+        border-radius: 50%;
+    }
+}
+
+.text-highlight{
+    &:hover{
+        text-decoration: underline;
+        cursor: pointer;
+    }
+}

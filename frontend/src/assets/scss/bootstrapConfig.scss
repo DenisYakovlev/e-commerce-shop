@@ -1,0 +1,17 @@
+// colors
+$primary: white;
+$secondary: #f8f9fa;
+
+@import '~bootstrap/scss/bootstrap';
+
+// remove bottom line from modal header
+.modal-header{
+    border-bottom: none;
+}
+
+// removes border by default on focus, make it dark
+.form-control{
+    &:focus{
+        border-color: $input-border-width solid $input-border-color;
+    }
+}
