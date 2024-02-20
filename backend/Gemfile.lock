@@ -94,6 +94,10 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    dotenv (3.0.2)
+    dotenv-rails (3.0.2)
+      dotenv (= 3.0.2)
+      railties (>= 6.1)
     drb (2.2.0)
       ruby2_keywords
     erubi (1.12.0)
@@ -149,6 +153,8 @@ GEM
       nio4r (~> 2.0)
     racc (1.7.3)
     rack (3.0.9)
+    rack-cors (2.0.1)
+      rack (>= 2.0.0)
     rack-session (2.0.0)
       rack (>= 3.0.0)
     rack-test (2.1.0)
@@ -224,9 +230,11 @@ DEPENDENCIES
   bootsnap
   debug
   devise
+  dotenv-rails
   jwt
   pg (~> 1.1)
   puma (>= 5.0)
+  rack-cors
   rails (~> 7.1.3)
   ransack
   tzinfo-data
