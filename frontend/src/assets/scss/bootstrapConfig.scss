@@ -2,6 +2,17 @@
 $primary: white;
 $secondary: #f8f9fa;
 
+// modals sizing
+$modal-sm: 500px;
+
+// pagination
+$pagination-color: black;
+$pagination-active-color: white;
+$pagination-active-bg: #495057;
+
+// offcanvas. Remove border
+$offcanvas-border-color: none;
+
 @import '~bootstrap/scss/bootstrap';
 
 // remove bottom line from modal header
@@ -14,4 +25,10 @@ $secondary: #f8f9fa;
     &:focus{
         border-color: $input-border-width solid $input-border-color;
     }
+}
+
+// offcanvas. Added background and border
+.offcanvas-header{
+    background-color: $secondary;
+    border-bottom: $border-color-translucent solid 1px;
 }

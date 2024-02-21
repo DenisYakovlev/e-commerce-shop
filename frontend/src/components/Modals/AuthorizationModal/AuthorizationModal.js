@@ -16,8 +16,9 @@ export default function AuthorizationModal({show, setShow}){
     return (
         <Modal
             show={show}
-            onHide={() => setShow(false)}
+            onHide={() => setShow(false)} size="sm"
             centered keyboard animation backdrop="static"
+            // className="d-flex justify-content-center align-items-center"
         >
             <Modal.Header closeButton />
             <Modal.Body className="d-flex flex-column gap-3">

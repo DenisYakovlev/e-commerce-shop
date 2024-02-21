@@ -1,10 +1,9 @@
 import { useContext } from "react"
-import { AlertContext, UserContext } from "../context"
+import { UserContext } from "../context"
 import { API_BASE_URL } from "../constants"
 
 export default function useApi(){
     const { user } = useContext(UserContext)
-    const { showAlert } = useContext(AlertContext)
 
     const publicFetch = async (url, params) => {
         const _url = `${API_BASE_URL}/${url}`
@@ -44,9 +43,6 @@ export default function useApi(){
             }
 
             return response.json().then(data => {throw new Error(JSON.stringify(data))})
-        })
-        .catch(error => {
-            showAlert(error.toString())
         })
     }
 

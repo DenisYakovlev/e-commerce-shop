@@ -1,6 +1,7 @@
 import { UserContextProvider } from "./UserContext"
 import { AlertContextProvider } from "./AlertContext"
 import { AuthorizationContextProvider } from "./AuthorizationContext"
+import { CartContextProvider } from "./CartContext"
 
 
 export default function ContextManager({children}){
@@ -8,7 +9,9 @@ export default function ContextManager({children}){
         <AlertContextProvider>
             <UserContextProvider>
                 <AuthorizationContextProvider>
-                    {children}
+                    <CartContextProvider>
+                        {children}
+                    </CartContextProvider>
                 </AuthorizationContextProvider>
             </UserContextProvider>
         </AlertContextProvider>

@@ -1,10 +1,9 @@
 import Form from "react-bootstrap/Form"
 import Container from "react-bootstrap/Container"
-import DarkButton from "../common/DarkButton"
-import { emailIsValid } from "./utils"
+import DarkButton from "../../common/DarkButton"
 import { useContext, useState } from "react"
-import { useApi } from "../../hooks"
-import { UserContext } from "../../context"
+import { useApi } from "../../../hooks"
+import { UserContext } from "../../../context"
 
 
 export default function SignInForm({onSubmit}){
