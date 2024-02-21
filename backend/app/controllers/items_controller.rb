@@ -11,9 +11,10 @@ class ItemsController < ApplicationController
 
     items_count = @items.total_entries
     headers['X-Total-Count'] = items_count.to_s
+    pagination_page = params[:page].to_i
     render json: {
       items: @items, 
-      links: items_paginate(params[:page].to_i || 1, 10, items_count )
+      pagination: items_paginate(pagination_page || 1, 10, items_count )
     }
   end
 
@@ -64,6 +65,8 @@ class ItemsController < ApplicationController
 
     def items_paginate(page, per_page, total)
       {
+        item_count: total,
+        page_count: (total.to_f / per_page.to_f).ceil,
         curr_page: page, 
         next_page: page * per_page < total ? page + 1 : nil,
         prev_page: page > 1 ? page - 1 : nil,
