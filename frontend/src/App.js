@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { ContextManager } from "./context"
 import { MainLayout } from "./layouts"
-import { Home } from "./pages"
+import { Home, Profile } from "./pages"
 
 
 export default function App(){
@@ -12,6 +12,8 @@ export default function App(){
 
           <Route path="/"element={<MainLayout />}>
               <Route index element={<Home />}/>
+
+              <Route path="profile" element={<Profile />}/>
           </Route>
 
         </Routes>

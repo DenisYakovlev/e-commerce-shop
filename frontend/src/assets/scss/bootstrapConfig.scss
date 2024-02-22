@@ -13,6 +13,20 @@ $pagination-active-bg: #495057;
 // offcanvas. Remove border
 $offcanvas-border-color: none;
 
+// forms
+$form-check-input-checked-bg-color: #0d6efd;
+$form-check-input-checked-border-color: $secondary;
+
+
+// tabs
+$nav-pills-link-active-color: black;
+$nav-pills-link-active-bg: #000a200d;
+$nav-link-hover-color: black;
+$nav-link-color: #212529;
+$nav-link-padding-y: 0.75rem;
+$nav-link-padding-x: 1.5rem;
+
+
 @import '~bootstrap/scss/bootstrap';
 
 // remove bottom line from modal header
@@ -27,8 +41,19 @@ $offcanvas-border-color: none;
     }
 }
 
+.accordion-header{
+    border-bottom: $accordion-border-width solid $accordion-border-color;
+}
+
 // offcanvas. Added background and border
 .offcanvas-header{
     background-color: $secondary;
     border-bottom: $border-color-translucent solid 1px;
+}
+
+// change offcanvas width to 100% on small screens
+@media (max-width: map-get($grid-breakpoints, sm)) {
+    .offcanvas{
+        width: 100% !important;
+    }
 }

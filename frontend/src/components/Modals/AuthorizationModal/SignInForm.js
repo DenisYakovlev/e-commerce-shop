@@ -1,6 +1,6 @@
 import Form from "react-bootstrap/Form"
 import Container from "react-bootstrap/Container"
-import DarkButton from "../../common/DarkButton"
+import DarkButton from "../../Common/DarkButton"
 import { useContext, useState } from "react"
 import { useApi } from "../../../hooks"
 import { UserContext } from "../../../context"

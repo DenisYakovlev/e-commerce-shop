@@ -12,6 +12,11 @@ const CartContextProvider = ({children}) => {
         localStorage.setItem('cart', JSON.stringify(newCart))
     }
 
+    const cartClear = () => {
+        localStorage.removeItem('cart')
+        setCart([])
+    }
+
     const cartUpdateQuantity = (item_id, quantity) => {
         const idx = Object.values(cart).findIndex(obj => obj.item.id == item_id)
 
@@ -38,6 +43,17 @@ const CartContextProvider = ({children}) => {
         return cart.reduce((accumulator, obj) => accumulator + obj.item.price * obj.quantity, 0);
     }
 
+    const cartToOrder = () => {
+        return {
+            items: cart.map(obj => {
+                return {
+                    item_id: obj.item.id,
+                    quantity: obj.quantity
+                }
+            }) 
+        }
+    }
+
     return (
         <CartContext.Provider value={{
             cart, 
@@ -45,7 +61,9 @@ const CartContextProvider = ({children}) => {
             cartIncludes, 
             cartRemoveItem, 
             cartUpdateQuantity,
-            cartTotalCost
+            cartTotalCost,
+            cartToOrder,
+            cartClear
         }}>
             {children}
         </CartContext.Provider>

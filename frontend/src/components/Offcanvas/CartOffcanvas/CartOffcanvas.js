@@ -1,14 +1,44 @@
-import { useContext } from "react"
+import { useContext, useState } from "react"
 import Offcanvas from "react-bootstrap/Offcanvas"
 import Container from "react-bootstrap/Container"
 import Button from "react-bootstrap/Button"
 import CartItemCard from "../../Cards/CartItemCard"
-import { CartContext } from "../../../context"
+import OrderModal from "../../Modals/OrderModal/OrderModal"
+import { AuthorizationContext, CartContext, UserContext } from "../../../context"
 import { truncPrice } from "../../utils"
+import { useApi } from "../../../hooks"
 
 
 export default function CartOffcanvas({showCart, setShowCart}){
-    const { cart, cartTotalCost } = useContext(CartContext)
+    const {authFetch} = useApi()
+    const {user} = useContext(UserContext)
+    const [resultType, setResultType] = useState('')
+    const [showResult, setShowResult] = useState(false)
+    const {showAuthModal} = useContext(AuthorizationContext)
+    const { cart, cartTotalCost, cartToOrder, cartClear } = useContext(CartContext)
+
+    const handleOrderCreate = () => {
+        if(!user){
+            showAuthModal()
+            return
+        }
+
+        const body = cartToOrder()
+
+        authFetch('orders/', {
+            method: "POST",
+            body: JSON.stringify(body)
+        })
+        .then(() => {
+            setResultType("success")
+            setShowResult(true)
+            cartClear()
+        })
+        .catch(() => {
+            setResultType("error")
+            setShowResult(true)
+        })
+    }
 
     return (
         <Offcanvas
@@ -17,6 +47,12 @@ export default function CartOffcanvas({showCart, setShowCart}){
             show={showCart}
             onHide={() => setShowCart(false)}
         >
+            <OrderModal
+                show={showResult}
+                setShow={setShowResult} 
+                type={resultType}
+            />
+
             <Offcanvas.Header closeButton>
                 <Offcanvas.Title>
                     Кошик
@@ -43,7 +79,12 @@ export default function CartOffcanvas({showCart, setShowCart}){
                         </p>
                     </Container>
 
-                    <Button variant="outline-dark" size="lg" className="mx-3">
+                    <Button 
+                        onClick={handleOrderCreate}
+                        variant="outline-dark" 
+                        size="lg" 
+                        className="m-3"
+                    >
                         Оформити замовлення
                     </Button>
                 </Container>

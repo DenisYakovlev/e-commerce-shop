@@ -1,8 +1,9 @@
 import Card from "react-bootstrap/Card"
 import Container from "react-bootstrap/Container"
-import Icon from "../common/Icon"
+import Icon from "../Common/Icon"
 import ItemImg from "../../assets/images/default-product-image.png"
-import QuantitySwitch from "../common/QuantitySwitch"
+import QuantitySwitch from "../Common/QuantitySwitch"
+import { ItemModal } from ".."
 import { useContext, useState } from "react"
 import { CartContext } from "../../context"
 import { truncPrice } from "../utils"
@@ -10,6 +11,7 @@ import { truncPrice } from "../utils"
 
 export default function CartItemCard({obj}){
     const {item, quantity} = obj
+    const [showModal, setShowModal] = useState(false)
     const { cartRemoveItem, cartUpdateQuantity } = useContext(CartContext)
     const [count, setCount] = useState(quantity)
 
@@ -24,13 +26,25 @@ export default function CartItemCard({obj}){
             text="dark"
             className="p-0 rounded-0 border-0 border-bottom"
         >
+            <ItemModal 
+                show={showModal}
+                setShow={setShowModal}
+                item={item}
+            />
+
             <Card.Body className="p-1 d-flex flex-row">
-                <Card.Img src={ItemImg} style={{width: "100px", height: "100px"}}/>
+                <Card.Img
+                    onClick={() => setShowModal(true)} 
+                    src={ItemImg} 
+                    style={{width: "100px", height: "100px", cursor: "pointer"}}
+                />
                 
                 <Container className="p-3 d-flex flex-column gap-1" fluid>
                     <Container className="p-0 d-flex flex-row justify-content-between" fluid>
-                        <Card.Text 
+                        <Card.Text
+                            onClick={() => setShowModal(true)} 
                             title={item.name} 
+                            style={{cursor: "pointer"}}
                             className="m-0 fs-6 fw-bold text-break lh-1"
                         >
                             {item.name}

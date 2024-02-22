@@ -1,6 +1,6 @@
 import Card from "react-bootstrap/Card"
 import Container from "react-bootstrap/Container"
-import Icon from "../common/Icon"
+import Icon from "../Common/Icon"
 import ItemModal from "../Modals/ItemModal/ItemModal"
 import ItemImg from "../../assets/images/default-product-image.png"
 import { truncPrice } from "../utils"

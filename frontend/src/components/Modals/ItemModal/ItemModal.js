@@ -3,7 +3,7 @@ import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 import Container from "react-bootstrap/Container"
 import Image from "react-bootstrap/Image"
-import Icon from "../../common/Icon"
+import Icon from "../../Common/Icon"
 import Button from "react-bootstrap/Button"
 import { truncPrice } from "../../utils"
 import ItemImg from "../../../assets/images/default-product-image.png"
@@ -43,8 +43,7 @@ export default function ItemModal({show, setShow, item}){
                             </p>
 
                             <p 
-                                className="fs-5 text-muted lh-sm overflow-auto" 
-                                style={{minHeight: "100px", maxHeight: "300px"}}
+                                className="fs-5 text-muted lh-sm" 
                             >
                                 {item.description}
                             </p>

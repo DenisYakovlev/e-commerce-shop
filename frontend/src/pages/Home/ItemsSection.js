@@ -30,7 +30,8 @@ export default function ItemsSection({search}){
 
         const params = qs.stringify({
             page: page,
-            "q[name_cont]": search
+            "q[name_cont]": search,
+            per_page: "10"
         })
 
         await publicFetch(`items?${params}`, {
