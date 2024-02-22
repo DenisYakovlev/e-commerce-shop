@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :role, inclusion: { in: %w(admin user) }
+  validates :first_name, length: { minimum: 2 }
+  validates :last_name, length: { minimum: 2 }
 
   def self.ransackable_attributes(auth_object = nil)
     %w[email]

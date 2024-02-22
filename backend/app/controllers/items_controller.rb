@@ -6,15 +6,17 @@ class ItemsController < ApplicationController
 
   # GET /items
   def index
+    per_page = params[:per_page].to_i || 10
+
     @q = Item.ransack(params[:q])
-    @items = @q.result.paginate(page: params[:page], per_page: 10)
+    @items = @q.result.paginate(page: params[:page], per_page: per_page)
 
     items_count = @items.total_entries
     headers['X-Total-Count'] = items_count.to_s
     pagination_page = params[:page].to_i
     render json: {
       items: @items, 
-      pagination: items_paginate(pagination_page || 1, 10, items_count )
+      pagination: items_paginate(pagination_page || 1, per_page, items_count )
     }
   end
 
