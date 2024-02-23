@@ -6,10 +6,30 @@ services:
       dockerfile: Dockerfile
       context: ./backend
     container_name: shop_backend
+    env_file:
+      - ./backend/.env.prod
     ports:
-      - "3000:3000"
+      - "8000:8000"
     depends_on:
       - db
+
+  frontend:
+    build:
+      dockerfile: Dockerfile
+      context: ./frontend
+    container_name: shop_frontend
+    volumes:
+      - /app/node_modules
+      - /app/build
+      - ./frontend:/app
+    env_file:
+      -  ./frontend/.env.prod
+    depends_on:
+      - backend
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    tty: true
 
   db:
     image: postgres:latest
