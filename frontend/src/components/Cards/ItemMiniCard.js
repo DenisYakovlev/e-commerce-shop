@@ -4,10 +4,12 @@ import Button from "react-bootstrap/Button"
 import ItemImg from "../../assets/images/default-product-image.png"
 import { useState } from "react"
 import ItemUpdateModal from "../Modals/ItemUpdateModal/ItemUpdateModal"
+import ItemModal from "../Modals/ItemModal/ItemModal"
 
 
 export default function ItemMiniCard({item}){
-    const [showModal, setShowModal] = useState(false) 
+    const [showItemModal, setShowItemModal] = useState(false)
+    const [showUpdateModal, setShowUpdateModal] = useState(false) 
 
     return (
         <Card
@@ -15,15 +17,22 @@ export default function ItemMiniCard({item}){
             text="dark"
             className="p-0 rounded-0 border-0 border-bottom"
         >
+            <ItemModal 
+                show={showItemModal}
+                setShow={setShowItemModal}
+                item={item}
+            />
+
             <ItemUpdateModal 
-                show={showModal}
-                setShow={setShowModal}
+                show={showUpdateModal}
+                setShow={setShowUpdateModal}
                 item={item}
             />
 
             <Card.Body className="d-flex flex-row">
                 <Card.Img
                     src={ItemImg} 
+                    onClick={() => setShowItemModal(true)}
                     style={{width: "100px", height: "100px", cursor: "pointer"}}
                 />
 
@@ -42,7 +51,7 @@ export default function ItemMiniCard({item}){
                         variant="outline-dark" 
                         size="sm" 
                         style={{width: "150px"}} 
-                        onClick={() => setShowModal(true)}
+                        onClick={() => setShowUpdateModal(true)}
                     >
                         Редактувати
                     </Button>

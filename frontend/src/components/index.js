@@ -12,12 +12,13 @@ import QuantitySwitch from "./Common/QuantitySwitch"
 import OrderModal from "./Modals/OrderModal/OrderModal"
 import UserCard from "./Cards/UserCard"
 import ProfileModal from "./Modals/ProfileModal/ProfileModal"
-import OrderListCard from "./Cards/OrderListCard/OrderListCard"
+import ConsoleCard from "./Cards/ConsoleCard/ConsoleCard"
 import OrderDescriptionCard from "./Cards/OrderDescriptionCard"
 import UserMiniCard from "./Cards/UserMiniCard"
 import UserUpdateModal from "./Modals/UserUpdateModal/UserUpdateModal"
 import ItemMiniCard from "./Cards/ItemMiniCard"
 import ItemUpdateModal from "./Modals/ItemUpdateModal/ItemUpdateModal"
+import ItemCreateModal from "./Modals/ItemCreateModal/ItemCreateModal"
 
 
 export { 
@@ -35,10 +36,11 @@ export {
     OrderModal,
     UserCard,
     ProfileModal,
-    OrderListCard,
+    ConsoleCard,
     OrderDescriptionCard,
     UserMiniCard,
     UserUpdateModal,
     ItemMiniCard,
-    ItemUpdateModal
+    ItemUpdateModal,
+    ItemCreateModal
 }

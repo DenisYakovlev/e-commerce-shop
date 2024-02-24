@@ -8,7 +8,7 @@ const tabsOptions = {
     "admin": <AdminTabs />
 }
 
-export default function OrderListCard({profile}){
+export default function ConsoleCard({profile}){
     return (
         <Card
             bg="primary"
