@@ -9,7 +9,7 @@ class ItemsController < ApplicationController
     per_page = params[:per_page].to_i || 10
 
     @q = Item.ransack(params[:q])
-    @items = @q.result.paginate(page: params[:page], per_page: per_page)
+    @items = @q.result.paginate(page: params[:page], per_page: per_page).order(:id)
 
     items_count = @items.total_entries
     headers['X-Total-Count'] = items_count.to_s

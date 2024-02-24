@@ -6,10 +6,7 @@ class UsersController < ApplicationController
 
   # GET /users
   def index
-    @q = User.ransack(params[:q])
-    @users = @q.result.paginate(page: params[:page], per_page: 10)
-
-    headers['X-Total-Count'] = @users.total_entries.to_s
+    @users = User.all.order(:email)
     render json: @users
   end
 
