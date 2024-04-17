@@ -34,8 +34,7 @@ In backend directory create .env.prod file and put your values:
 In frontend directory create .env.prod file and put your values:
 * REACT_APP_API_BASE_URL - url of backend server, must be app_url/api to match nginx config
 
-**If you want to run in production**, create .env.prod files for those directories and fill with your values
-Also, go to nginx/nginx.conf if you want to change basic config for proxy server of your application
+Also, go to nginx/nginx.conf if you want to change basic config for proxy server of your application.
 
 ## Launching
 You can run production build from root directory with:
