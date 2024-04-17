@@ -22,17 +22,17 @@ git clone https://github.com/DenisYakovlev/e-commerce-shop.git
 
 ### Enviroment variables
 
-In backend directory create .env file and put your values:
+In backend directory create .env.prod file and put your values:
 
-* PORT - port of application
+* PORT - port of application, use 8000 to match nginx config
 * POSTGRES_USERNAME - database user
 * POSTGRES_PASSWORD - database password
-* POSTGRES_HOST - database host
-* POSTGRES_PORT - database port
+* POSTGRES_HOST - database host, use db to match nginx config
+* POSTGRES_PORT - database port, use 5432 to match nginx config
 * JWT_SECRET - secret key for encoding/decoding jwt tokens
 
-In frontend directory create .env file and put your values:
-* REACT_APP_API_BASE_URL - url of backend server
+In frontend directory create .env.prod file and put your values:
+* REACT_APP_API_BASE_URL - url of backend server, must be app_url/api to match nginx config
 
 **If you want to run in production**, create .env.prod files for those directories and fill with your values
 Also, go to nginx/nginx.conf if you want to change basic config for proxy server of your application
@@ -41,5 +41,5 @@ Also, go to nginx/nginx.conf if you want to change basic config for proxy server
 You can run production build from root directory with:
 
 ```
-docker-compose -f docker-compose up --build
+docker-compose -f docker-compose.yml up --build
 ```
