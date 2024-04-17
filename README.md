@@ -32,7 +32,7 @@ In backend directory create .env.prod file and put your values:
 * JWT_SECRET - secret key for encoding/decoding jwt tokens
 
 In frontend directory create .env.prod file and put your values:
-* REACT_APP_API_BASE_URL - url of backend server, must be app_url/api to match nginx config
+* REACT_APP_API_BASE_URL - url of backend server, must be app_url/api/ to match nginx config
 
 Also, go to nginx/nginx.conf if you want to change basic config for proxy server of your application.
 
